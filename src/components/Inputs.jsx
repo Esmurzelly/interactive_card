@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import {useForm} from 'react-hook-form';
+import Access from './Access';
+import icon_complete from '../images/icon-complete.svg';
 
 const Wrapper = styled.div`
     width: 100%;
@@ -25,6 +27,9 @@ const Container = styled.div`
             font-size: 10px;
         }
         gap: 25px;
+    }
+    &.hide {
+        display: none;
     }
 `;
 const Input = styled.input`
@@ -76,8 +81,17 @@ const Button = styled.button`
     font-size: var(--fs);
 `;
 
+const AccessStyle = styled.div`
+    // display: none;
+    display: ${props => props.display};
 
-const Inputs = ({updateNumCard, updateName, updateDateMM, updateDateYY, updateCvc}) => {
+    &.active {
+        display: block;
+    }
+`;
+
+
+const Inputs = ({updateNumCard, updateName, updateDateMM, updateDateYY, updateCvc, access, setAccess}) => {
     const {
         register,
         handleSubmit,
@@ -86,12 +100,13 @@ const Inputs = ({updateNumCard, updateName, updateDateMM, updateDateYY, updateCv
     } = useForm();
 
     const onSubmit = (data) => {
+        setAccess(true);
         console.log(JSON.stringify(data));
     }
 
     return ( 
         <Wrapper>
-            <Container>
+            <Container className={access === true ? "hide" : ""}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                 <Name>
                     <h3>Cardholdere name</h3>
@@ -197,18 +212,28 @@ const Inputs = ({updateNumCard, updateName, updateDateMM, updateDateYY, updateCv
                         />
                          {errors?.cvc?.type === 'required' && <p className='error'>This field is required</p>}
                         {errors?.cvc?.type === 'minLength' && (
-                            <p className='error'>Date YY must include 2 numbers</p>
+                            <p className='error'>Date YY must include 3 numbers</p>
                         )}
                         {errors?.cvc?.type === 'maxLength' && (
-                            <p className='error'>Date YY must include 2 numbers</p>
+                            <p className='error'>Date YY must include 3 numbers</p>
                         )}
                     </div>
                 </Date>
 
-                <Button>Confirm</Button>
+                    <Button>Confirm</Button>
                 </form>
                 
             </Container>
+
+            <AccessStyle display={'none'} className={access === true ? "active" : ""} >
+                <Access>
+                    <img src={icon_complete} alt="icon-complete" />
+                    <h2>Thank you</h2>
+                    <p>We've added your card details</p>
+
+                    <Button>Continue</Button>
+                </Access>
+            </AccessStyle>
         </Wrapper>
      );
 }

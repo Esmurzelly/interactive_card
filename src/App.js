@@ -2,8 +2,9 @@ import styled, {css} from 'styled-components';
 import { useState } from 'react';
 
 import Card from './components/Cards';
-
+import Modal from './components/Modal';
 import Inputs from './components/Inputs';
+import Access from './components/Access';
 
 
 // const Button = styled.button`
@@ -30,12 +31,16 @@ const Wrapper = styled.section`
 `;
 
 
+
 function App() {
     const [numCard, setNumCard] = useState("0000 0000 0000 0000");
     const [name, setName] = useState("Jane Appleseed");
     const [dateMM, setDateMM] = useState("00");
     const [dateYY, setDateYY] = useState("00");
     const [cvc, setCvc] = useState("000");
+
+    // const [modalActive, setModalActive] = useState(false);
+    const [access, setAccess] = useState(false);
 
     const updateNumCard = (e) => {
       const updatedNumCard = e.target.value;
@@ -79,9 +84,20 @@ function App() {
           updateDateMM={updateDateMM}
           updateDateYY={updateDateYY}
           updateCvc={updateCvc}  
+          access={access}
+          setAccess={setAccess}
         />
-      {/* <Button>asd</Button>
+        {/* <Access/> */}
+
+        {/* <Modal active={modalActive} setActive={setModalActive} >
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, veritatis! Sint asperiores placeat porro aliquid animi, eius laudantium mollitia nam.</p>
+        </Modal> */}
+      {/* <button onClick={() => setModalActive(true)}>Modal window</button> */}
+
+
+            {/* <Button>asd</Button>
       <Button primary>Primat</Button> */}
+
     </Wrapper>
   );
 }
