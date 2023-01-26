@@ -5,11 +5,20 @@ import Access from './Access';
 import icon_complete from '../images/icon-complete.svg';
 
 const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 100%;
     background-color: var(--white-color);
     color: black;
     padding: 0 25px 30px 25px;
+
+    @media(min-width: 1240px) {
+        form {
+            margin-left: 200px;
+        }
+    }
+    
 `;
 const Container = styled.div`
     form {
@@ -230,8 +239,6 @@ const Inputs = ({updateNumCard, updateName, updateDateMM, updateDateYY, updateCv
                     <img src={icon_complete} alt="icon-complete" />
                     <h2>Thank you</h2>
                     <p>We've added your card details</p>
-
-                    <Button>Continue</Button>
                 </Access>
             </AccessStyle>
         </Wrapper>

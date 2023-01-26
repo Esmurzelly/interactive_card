@@ -24,6 +24,15 @@ import Access from './components/Access';
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
+  @media(min-width: 1240px) {
+    flex-direction: row;
+    .top {
+      flex-grow: 2;
+    }
+    .bottom {
+      flex-grow: 1;
+    }
+  }
   min-height: 100vh;
   .top {
     flex-grow: 1;
@@ -70,7 +79,7 @@ function App() {
   return (
     <Wrapper>
         <div className='top'>
-          <Card 
+          <Card
             numCard={numCard} 
             name={name} 
             dateMM={dateMM} 
@@ -78,15 +87,18 @@ function App() {
             cvc={cvc} 
           />
         </div>
-        <Inputs 
-          updateNumCard={updateNumCard} 
-          updateName={updateName}
-          updateDateMM={updateDateMM}
-          updateDateYY={updateDateYY}
-          updateCvc={updateCvc}  
-          access={access}
-          setAccess={setAccess}
-        />
+        <div className='bottom'>
+          <Inputs 
+            updateNumCard={updateNumCard} 
+            updateName={updateName}
+            updateDateMM={updateDateMM}
+            updateDateYY={updateDateYY}
+            updateCvc={updateCvc}  
+            access={access}
+            setAccess={setAccess}
+          />
+
+        </div>
         {/* <Access/> */}
 
         {/* <Modal active={modalActive} setActive={setModalActive} >

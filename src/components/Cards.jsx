@@ -17,10 +17,24 @@ const TopPart = styled.div`
     background-repeat: no-repeat;
     background-position: center;
   }
-  @media(min-width: 375px) {
+  @media(min-width: 1240px) {
     background-image: url(${bgDesktop});
+    width: 100%;
+    height: 100%;
     background-repeat: no-repeat;
     background-position: center;
+
+    div > .cardFont {
+      position: absolute;
+      top: 20%;
+      left: 35%;
+    }
+
+    div > .cardBack {
+      position: absolute;
+      top: 43%;
+      left: 55%;
+    }
   }
 `;
 
